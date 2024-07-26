@@ -5,15 +5,15 @@ const FlightItem = ({ flight, onStatusChange }) => {
   return (
     <Card className="mb-3">
       <Card.Body>
-        <Card.Title>{flight.airline} flight {flight.flight_number}</Card.Title>
+        <Card.Title>{flight.airline} flight {flight.flight_id}</Card.Title>
         <Card.Text>
-          From {flight.departure.airport} ({flight.departure.iata}) to {flight.arrival.airport} ({flight.arrival.iata})<br/>
-          Status: <strong>{flight.status}</strong><br/>
-          Gate: {flight.gate}
+          Departure: {new Date(flight.scheduled_departure).toLocaleString()} at gate {flight.departure_gate}<br/>
+          Arrival: {new Date(flight.scheduled_arrival).toLocaleString()} at gate {flight.arrival_gate}<br/>
+          Status: <strong>{flight.status}</strong>
         </Card.Text>
-        <Button variant="warning" onClick={() => onStatusChange(flight.id, 'delayed')}>Delay</Button>{' '}
-        <Button variant="danger" onClick={() => onStatusChange(flight.id, 'cancelled')}>Cancel</Button>{' '}
-        <Button variant="success" onClick={() => onStatusChange(flight.id, 'scheduled')}>Schedule</Button>
+        <Button variant="warning" onClick={() => onStatusChange(flight.flight_id, 'Delayed')}>Delay</Button>{' '}
+        <Button variant="danger" onClick={() => onStatusChange(flight.flight_id, 'Cancelled')}>Cancel</Button>{' '}
+        <Button variant="success" onClick={() => onStatusChange(flight.flight_id, 'On Time')}>On Time</Button>
       </Card.Body>
     </Card>
   );

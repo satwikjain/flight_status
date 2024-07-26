@@ -7,7 +7,7 @@ const FlightList = ({ flights, onStatusChange }) => {
     <Container>
       <Row>
         {flights.map(flight => (
-          <Col key={flight.id} sm={12} md={6} lg={4}>
+          <Col key={flight.flight_id} sm={12} md={6} lg={4}>
             <FlightItem flight={flight} onStatusChange={onStatusChange} />
           </Col>
         ))}
