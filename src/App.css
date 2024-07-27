@@ -1,38 +1,32 @@
-.App {
-  text-align: center;
+.navbar-brand-text {
+  font-size: 2.5rem; /* Adjust the size as needed */
+  font-weight: 400; /* Change to normal weight for a narrow look */
+  color: #000; /* Change color if needed */
+  font-family: 'Roboto', sans-serif; /* Use the custom font */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar {
+  justify-content: center; /* Center the content */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@media (min-width: 992px) {
+  .navbar {
+    justify-content: center;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.flight-list-container {
+  margin-top: 20px; /* Adjust the margin as needed */
 }
 
-.App-link {
-  color: #61dafb;
+.status-on-time {
+  background-color: #d4edda !important; /* Green background */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.status-delayed {
+  background-color: #fff3cd !important; /* Yellow background */
+}
+
+.status-cancelled {
+  background-color: #f8d7da !important; /* Red background */
 }

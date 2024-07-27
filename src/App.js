@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import FlightList from './components/FlightList';
-import { Container } from 'react-bootstrap';
+import IndigoNavbar from './components/Navbar';
+import { Container, Toast, ToastContainer } from 'react-bootstrap';
 import { requestFirebaseNotificationPermission, onMessageListener } from './firebase';
-import { Toast, ToastContainer } from 'react-bootstrap';
+import './App.css'; // Ensure this import is correct
 
 function App() {
   const [flights, setFlights] = useState([]);
@@ -51,8 +52,10 @@ function App() {
 
   return (
     <Container>
-      <h1 className="my-4 text-center">Flight Status and Notifications</h1>
-      <FlightList flights={flights} onStatusChange={handleStatusChange} />
+      <IndigoNavbar />
+      <Container className="flight-list-container">
+        <FlightList flights={flights} onStatusChange={handleStatusChange} />
+      </Container>
       {notification.title ? (
         <ToastContainer position="top-end" className="p-3">
           <Toast onClose={() => setNotification({ title: '', body: '' })} show={true} delay={3000} autohide>

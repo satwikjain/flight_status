@@ -1,43 +1,18 @@
 from flask import Flask, jsonify, request
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
 
 app = Flask(__name__)
 
-# Mock flight data
-flights = [
-    {
-        "flight_id": "6E 2341",
-        "airline": "Indigo",
-        "status": "On Time",
-        "departure_gate": "A12",
-        "arrival_gate": "B7",
-        "scheduled_departure": "2024-07-26T14:00:00Z",
-        "scheduled_arrival": "2024-07-26T18:00:00Z",
-        "actual_departure": None,
-        "actual_arrival": None
-    },
-    {
-        "flight_id": "6E 2342",
-        "airline": "Indigo",
-        "status": "Delayed",
-        "departure_gate": "C3",
-        "arrival_gate": "D4",
-        "scheduled_departure": "2024-07-26T16:00:00Z",
-        "scheduled_arrival": "2024-07-26T20:00:00Z",
-        "actual_departure": None,
-        "actual_arrival": None
-    },
-    {
-        "flight_id": "6E 2343",
-        "airline": "Indigo",
-        "status": "Cancelled",
-        "departure_gate": "E2",
-        "arrival_gate": "F1",
-        "scheduled_departure": "2024-07-26T12:00:00Z",
-        "scheduled_arrival": "2024-07-26T16:00:00Z",
-        "actual_departure": None,
-        "actual_arrival": None
-    }
-]
+# MongoDB connection URI
+uri = "mongodb+srv://satwikjain:satwikjain@flightstatus.ghsndi1.mongodb.net/flightStatus?retryWrites=true&w=majority&appName=flightStatus"
+
+# Create a new client and connect to the server
+client = MongoClient(uri, server_api=ServerApi('1'))
+
+# Select the database and collections
+db = client["flightStatus"]
+flights_collection = db["flights"]
 
 # Mock notification data
 notifications = [
@@ -70,17 +45,20 @@ notifications = [
 # Endpoint to get flight data
 @app.route('/api/flights', methods=['GET'])
 def get_flights():
+    flights = list(flights_collection.find({}, {'_id': 0}))  # Retrieve all flight data, excluding the MongoDB _id field
     return jsonify(flights)
 
 # Endpoint to update flight status
 @app.route('/api/flights/<string:flight_id>', methods=['PUT'])
 def update_flight_status(flight_id):
     updated_status = request.json.get('status')
-    for flight in flights:
-        if flight['flight_id'] == flight_id:
-            flight['status'] = updated_status
-            return jsonify(flight)
-    return jsonify({"error": "Flight not found"}), 404
+    result = flights_collection.update_one({'flight_id': flight_id}, {'$set': {'status': updated_status}})
+    
+    if result.matched_count > 0:
+        flight = flights_collection.find_one({'flight_id': flight_id}, {'_id': 0})
+        return jsonify(flight)
+    else:
+        return jsonify({"error": "Flight not found"}), 404
 
 # Endpoint to get notification data
 @app.route('/api/notifications', methods=['GET'])
