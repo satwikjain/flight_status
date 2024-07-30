@@ -5,6 +5,13 @@
   font-family: 'Roboto', sans-serif; /* Use the custom font */
 }
 
+.navbar-nav .nav-link {
+  padding: 0 15px;
+}
+
+.navbar-nav .btn-outline-primary {
+  border-radius: 20px;
+}
 .navbar {
   justify-content: center; /* Center the content */
 }
@@ -29,4 +36,16 @@
 
 .status-cancelled {
   background-color: #f8d7da !important; /* Red background */
+}
+
+.flight-item {
+  transition: transform 0.3s ease-in-out;
+}
+
+.flight-item:hover {
+  transform: scale(1.03);
+}
+
+.modal-body p {
+  margin: 0.5rem 0;
 }

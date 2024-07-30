@@ -4,6 +4,9 @@ import FlightList from './components/FlightList';
 import IndigoNavbar from './components/Navbar';
 import { Container, Toast, ToastContainer } from 'react-bootstrap';
 import { requestFirebaseNotificationPermission, onMessageListener } from './firebase';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import FlightDetails from './components/FlightDetails';
+import AdminPanel from './components/AdminPanel';
 import './App.css'; // Ensure this import is correct
 
 function App() {
@@ -51,22 +54,25 @@ function App() {
   };
 
   return (
-    <Container>
-      <IndigoNavbar />
-      <Container className="flight-list-container">
-        <FlightList flights={flights} onStatusChange={handleStatusChange} />
+    <Router>
+      <Container>
+        <IndigoNavbar />
+        <Routes>
+          <Route path="/" element={<FlightList flights={flights} onStatusChange={handleStatusChange} />} />
+          <Route path="/admin" element={<AdminPanel onStatusChange={handleStatusChange} />} />
+        </Routes>
+        {notification.title ? (
+          <ToastContainer position="top-end" className="p-3">
+            <Toast onClose={() => setNotification({ title: '', body: '' })} show={true} delay={3000} autohide>
+              <Toast.Header>
+                <strong className="me-auto">{notification.title}</strong>
+              </Toast.Header>
+              <Toast.Body>{notification.body}</Toast.Body>
+            </Toast>
+          </ToastContainer>
+        ) : null}
       </Container>
-      {notification.title ? (
-        <ToastContainer position="top-end" className="p-3">
-          <Toast onClose={() => setNotification({ title: '', body: '' })} show={true} delay={3000} autohide>
-            <Toast.Header>
-              <strong className="me-auto">{notification.title}</strong>
-            </Toast.Header>
-            <Toast.Body>{notification.body}</Toast.Body>
-          </Toast>
-        </ToastContainer>
-      ) : null}
-    </Container>
+    </Router>
   );
 }
 
