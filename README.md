@@ -4,14 +4,13 @@
 
 This single-page responsive web application provides a comprehensive view of flight statuses and management. It features a React.js frontend, a Python Flask backend, and utilizes MongoDB for data storage. Real-time communication is handled with Socket.io. The application is designed as a potential future website for Indigo Airlines, featuring dynamic flight updates and administrative functionalities.
 
-
-
-https://github.com/user-attachments/assets/7caadfae-ecf1-4504-ad8e-c0849402f51e
-
-![Screenshot (7)](https://github.com/user-attachments/assets/66fb6dfa-ec2b-414c-b1ae-982dfa3081a9)
-![Screenshot (6)](https://github.com/user-attachments/assets/087b21df-e379-4d78-a299-3630558b41cd)
 ![Screenshot (8)](https://github.com/user-attachments/assets/7559c58a-1b12-4f47-bd8e-a39b30dca666)
 
+![Screenshot (7)](https://github.com/user-attachments/assets/66fb6dfa-ec2b-414c-b1ae-982dfa3081a9)
+
+![Screenshot (6)](https://github.com/user-attachments/assets/087b21df-e379-4d78-a299-3630558b41cd)
+
+https://github.com/user-attachments/assets/7caadfae-ecf1-4504-ad8e-c0849402f51e
 
 ## Features
 
