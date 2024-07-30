@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Container, Toast, ToastContainer } from 'react-bootstrap';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Note the change here
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import FlightList from './components/FlightList';
 import IndigoNavbar from './components/Navbar';
 import AdminPanel from './components/AdminPanel';
@@ -38,6 +38,14 @@ function App() {
     try {
       const response = await axios.get('/api/flights');
       setFlights(response.data);
+
+      // Log attendants details for each flight
+      response.data.forEach(flight => {
+        console.log(`Flight ID: ${flight.flight_id}, Airline: ${flight.airline}`);
+        flight.attendants.forEach((attendant, index) => {
+          console.log(`Attendant ${index + 1}: Email - ${attendant.email}, Phone - ${attendant.phone}`);
+        });
+      });
     } catch (error) {
       console.error('Error fetching flight data', error);
     }
@@ -57,7 +65,7 @@ function App() {
       <Container>
         <IndigoNavbar />
         <div style={{ marginTop: '20px' }}>
-          <Routes> {/* Note the change here */}
+          <Routes>
             <Route path="/" element={
               <Container className="flight-list-container">
                 <FlightList flights={flights} onStatusChange={handleStatusChange} />
