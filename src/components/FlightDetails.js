@@ -4,18 +4,18 @@ import { Alert } from 'react-bootstrap';
 const FlightDetails = ({ flight }) => {
   const getStatusMessage = (status) => {
     if (status === 'Cancelled') {
-        return (
-          <Alert variant="danger">
-            We are sorry for the inconvenience. The flight has been cancelled.
-          </Alert>
-        );
-      } else if (status === 'Delayed') {
-        return (
-          <Alert variant="warning">
-            We are sorry for the inconvenience. The flight has been delayed.
-          </Alert>
-        );
-      }
+      return (
+        <Alert variant="danger">
+          We are sorry for the inconvenience. The flight has been cancelled.
+        </Alert>
+      );
+    } else if (status === 'Delayed') {
+      return (
+        <Alert variant="warning">
+          We are sorry for the inconvenience. The flight has been delayed.
+        </Alert>
+      );
+    }
     return null;
   };
 
@@ -37,6 +37,7 @@ const FlightDetails = ({ flight }) => {
       <p><strong>Arrival Gate:</strong> {flight.arrival_gate}</p>
       <p><strong>Status:</strong> {flight.status}</p>
       <p><strong>Flight Duration:</strong> {calculateDuration(flight.scheduled_departure, flight.scheduled_arrival)}</p>
+      <p><strong>Number of Attendants:</strong> {flight.attendants.length}</p>
     </div>
   );
 };
