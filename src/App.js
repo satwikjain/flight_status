@@ -9,6 +9,7 @@ import './App.css';
 
 function App() {
   const [flights, setFlights] = useState([]);
+  
 
   useEffect(() => {
     fetchFlights();

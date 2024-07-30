@@ -1,71 +1,101 @@
-# Flight Status
+# Flight Status Website
 
+## Overview
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This single-page responsive web application provides a comprehensive view of flight statuses and management. It features a React.js frontend, a Python Flask backend, and utilizes MongoDB for data storage. Real-time communication is handled with Socket.io. The application is designed as a potential future website for Indigo Airlines, featuring dynamic flight updates and administrative functionalities.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Home Page**: 
+  - Displays a list of flights in cards sorted by departure time.
+  - Flight cards are color-coded based on status: green for on-time, yellow for delayed, and red for canceled.
+  - Hovering over a card lifts it slightly, and clicking it opens a detailed view with information about arrival, departure, status, and more.
+  - Includes a search bar for filtering flights by name, flight number, or gate, and a filter to view flights by status.
 
-### `npm start`
+- **Admin Panel**:
+  - Restricted to admins. Requires login with predefined credentials (`admin`/`password` for demo).
+  - Admins can select a flight and update its status (on-time, delayed, canceled).
+  - Updates trigger email notifications to attendants, including personalized messages based on flight status.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation and Setup
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 1. Clone the Repository
 
-### `npm test`
+Clone the repository to your local machine and navigate into the project directory:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+git clone <repository-url>
+cd <repository-directory>
+```
 
-### `npm run build`
+### 2. Frontend Setup
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Navigate to the `frontend` directory and install the necessary npm packages:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+cd frontend
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 3. Backend Setup
 
-### `npm run eject`
+Navigate to the `backend` directory and install the required Python packages using `requirements.txt`:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+cd ../backend
+pip install -r requirements.txt
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 4. Configuration
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Create a `.env` file in the `backend` directory with the following environment variables:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```env
+MONGO_URI=<your-mongodb-connection-link>
+EMAIL_ADDRESS=<your-email-address>
+EMAIL_PASSWORD=<your-email-password>
+```
 
-## Learn More
+Replace `<your-mongodb-connection-link>`, `<your-email-address>`, and `<your-email-password>` with your MongoDB connection string and email credentials used for sending notifications.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 5. Running the Application
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Frontend
 
-### Code Splitting
+Navigate to the `frontend` directory and start the development server:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+cd ../frontend
+npm start
+```
 
-### Analyzing the Bundle Size
+#### Backend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Navigate to the `backend` directory and start the Flask server:
 
-### Making a Progressive Web App
+```bash
+cd ../backend
+python app.py
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Accessing the Application
 
-### Advanced Configuration
+Once both the frontend and backend servers are running, open your web browser and go to `http://localhost:3000` to view the application.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## License
 
-### Deployment
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Acknowledgements
 
-### `npm run build` fails to minify
+- React.js for the frontend framework.
+- Flask for the backend server.
+- MongoDB for database management.
+- Socket.io for real-time communication.
+- Bootstrap for UI components and styling.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Contact
+
+For any questions or issues, please contact [your-email@example.com](mailto:your-email@example.com).
+
+```

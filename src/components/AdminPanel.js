@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container, Form, Button, Row, Col, Card, Alert, Spinner } from 'react-bootstrap';
 import LoginForm from './LoginForm';
 
@@ -11,16 +11,8 @@ const AdminPanel = ({ flights, onStatusChange }) => {
   const [updatedFlight, setUpdatedFlight] = useState(null);
   const [loading, setLoading] = useState(false); 
 
-  useEffect(() => {
-    const authStatus = localStorage.getItem('isAuthenticated');
-    if (authStatus === 'true') {
-      setIsAuthenticated(true);
-    }
-  }, []);
-
   const handleLoginSuccess = () => {
     setIsAuthenticated(true);
-    localStorage.setItem('isAuthenticated', 'true');
   };
 
   const handleStatusUpdate = async () => {
