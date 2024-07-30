@@ -1,42 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import { Container, Form, Button, Row, Col, Card, Alert } from 'react-bootstrap';
 
-const AdminPanel = ({ onStatusChange }) => {
-  const [flights, setFlights] = useState([]);
-  const [selectedFlight, setSelectedFlight] = useState(null);
+const AdminPanel = ({ flights, onStatusChange }) => {
+  const [selectedFlight, setSelectedFlight] = useState('');
   const [newStatus, setNewStatus] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [updatedFlight, setUpdatedFlight] = useState(null);
 
-  useEffect(() => {
-    fetchFlights();
-  }, []);
-
-  const fetchFlights = async () => {
-    try {
-      const response = await axios.get('/api/flights');
-      setFlights(response.data);
-    } catch (error) {
-      console.error('Error fetching flight data', error);
-    }
-  };
-
   const handleStatusUpdate = async () => {
     if (selectedFlight && newStatus) {
       try {
-        // Update the status on the backend
-        const response = await axios.put(`/api/flights/${selectedFlight}`, { status: newStatus });
-        const updatedFlight = response.data;
-
-        // Update the frontend
-        setUpdatedFlight(updatedFlight);
+        await onStatusChange(selectedFlight, newStatus);
+        const updatedFlight = flights.find(flight => flight.flight_id === selectedFlight);
+        setUpdatedFlight({ ...updatedFlight, status: newStatus });
         setSuccessMessage('Status changed successfully!');
         setNewStatus('');
-        setSelectedFlight(null); // Reset selection
-
-        // Refresh the flight list
-        fetchFlights(); 
+        setSelectedFlight('');
 
         // Hide success message and updated flight card after 5 seconds
         setTimeout(() => {
@@ -62,6 +41,7 @@ const AdminPanel = ({ onStatusChange }) => {
               <Col sm={8}>
                 <Form.Control
                   as="select"
+                  value={selectedFlight}
                   onChange={(e) => setSelectedFlight(e.target.value)}
                 >
                   <option value="">Select a flight</option>

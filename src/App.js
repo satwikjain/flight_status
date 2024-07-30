@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Container, Toast, ToastContainer } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Note the change here
 import FlightList from './components/FlightList';
 import IndigoNavbar from './components/Navbar';
-import { Container, Toast, ToastContainer } from 'react-bootstrap';
-import { requestFirebaseNotificationPermission, onMessageListener } from './firebase';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import FlightDetails from './components/FlightDetails';
 import AdminPanel from './components/AdminPanel';
-import './App.css'; // Ensure this import is correct
+import { requestFirebaseNotificationPermission, onMessageListener } from './firebase';
+import './App.css';
 
 function App() {
   const [flights, setFlights] = useState([]);
@@ -47,7 +46,7 @@ function App() {
   const handleStatusChange = async (flight_id, newStatus) => {
     try {
       await axios.put(`/api/flights/${flight_id}`, { status: newStatus });
-      fetchFlights();
+      fetchFlights(); // Refresh the flight list
     } catch (error) {
       console.error('Error updating flight status', error);
     }
@@ -57,10 +56,18 @@ function App() {
     <Router>
       <Container>
         <IndigoNavbar />
-        <Routes>
-          <Route path="/" element={<FlightList flights={flights} onStatusChange={handleStatusChange} />} />
-          <Route path="/admin" element={<AdminPanel onStatusChange={handleStatusChange} />} />
-        </Routes>
+        <div style={{ marginTop: '20px' }}>
+          <Routes> {/* Note the change here */}
+            <Route path="/" element={
+              <Container className="flight-list-container">
+                <FlightList flights={flights} onStatusChange={handleStatusChange} />
+              </Container>
+            } />
+            <Route path="/admin" element={
+              <AdminPanel flights={flights} onStatusChange={handleStatusChange} />
+            } />
+          </Routes>
+        </div>
         {notification.title ? (
           <ToastContainer position="top-end" className="p-3">
             <Toast onClose={() => setNotification({ title: '', body: '' })} show={true} delay={3000} autohide>

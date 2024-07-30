@@ -48,4 +48,4 @@ def update_flight_status(flight_id):
 
 if __name__ == '__main__':
     check_db_connection()
-    socketio.run(app, debug=True)
+    app.run(debug=True)
