@@ -2,3 +2,5 @@ Flask
 Flask-SocketIO
 pymongo
 python-dotenv
+smtplib
+os
