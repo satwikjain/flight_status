@@ -24,16 +24,15 @@ This single-page responsive web application provides a comprehensive view of fli
 Clone the repository to your local machine and navigate into the project directory:
 
 ```bash
-git clone <repository-url>
-cd <repository-directory>
+git clone https://github.com/satwikjain/flight_status.git
+cd flight_status
 ```
 
 ### 2. Frontend Setup
 
-Navigate to the `frontend` directory and install the necessary npm packages:
+Install the necessary npm packages:
 
 ```bash
-cd frontend
 npm install
 ```
 
@@ -42,7 +41,7 @@ npm install
 Navigate to the `backend` directory and install the required Python packages using `requirements.txt`:
 
 ```bash
-cd ../backend
+cd ./backend
 pip install -r requirements.txt
 ```
 
@@ -62,10 +61,9 @@ Replace `<your-mongodb-connection-link>`, `<your-email-address>`, and `<your-ema
 
 #### Frontend
 
-Navigate to the `frontend` directory and start the development server:
+Navigate to the frontend directory and start the development server:
 
 ```bash
-cd ../frontend
 npm start
 ```
 
@@ -74,7 +72,7 @@ npm start
 Navigate to the `backend` directory and start the Flask server:
 
 ```bash
-cd ../backend
+cd ./backend
 python app.py
 ```
 
@@ -96,6 +94,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 
-For any questions or issues, please contact [your-email@example.com](mailto:your-email@example.com).
-
-```
+For any questions or issues, please contact [satwikjain25@gmail.com](mailto:satwikjain25@gmail.com).
