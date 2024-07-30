@@ -10,7 +10,11 @@ This single-page responsive web application provides a comprehensive view of fli
 
 ![Screenshot (7)](https://github.com/user-attachments/assets/66fb6dfa-ec2b-414c-b1ae-982dfa3081a9)
 
-https://github.com/user-attachments/assets/7caadfae-ecf1-4504-ad8e-c0849402f51e
+
+
+https://github.com/user-attachments/assets/20fc2ce3-55d0-465c-84e3-9c15646f96bb
+
+
 
 ## Features
 
