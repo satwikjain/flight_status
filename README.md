@@ -104,10 +104,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - Socket.io for real-time communication.
 - Bootstrap for UI components and styling.
 
-## Contact
-
-For any questions or issues, please contact [satwikjain25@gmail.com](mailto:satwikjain25@gmail.com).
-
 ## Future Work
 
 1. Adding user authentication to enable login and signup features.
@@ -120,3 +116,7 @@ For any questions or issues, please contact [satwikjain25@gmail.com](mailto:satw
 8. Integrating social media sharing options for users to share their flight details.
 9. Enhancing the admin panel with analytics and reporting tools for better decision-making.
 10. Providing a chatbot for customer support to handle common queries and provide flight information.
+
+## Contact
+
+For any questions or issues, please contact [satwikjain25@gmail.com](mailto:satwikjain25@gmail.com).
