@@ -107,3 +107,16 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Contact
 
 For any questions or issues, please contact [satwikjain25@gmail.com](mailto:satwikjain25@gmail.com).
+
+## Future Work
+
+1. Adding user authentication to enable login and signup features.
+2. Using bcrypt.js for password encryption to enhance security.
+3. Enabling users to book flights and integrating a payment gateway for transactions.
+4. Implementing role-based access control to differentiate between regular users and administrators.
+5. Developing a mobile application version for better accessibility.
+6. Adding multi-language support to cater to a diverse user base.
+7. Incorporating AI-driven features for predictive flight delays and personalized user experience.
+8. Integrating social media sharing options for users to share their flight details.
+9. Enhancing the admin panel with analytics and reporting tools for better decision-making.
+10. Providing a chatbot for customer support to handle common queries and provide flight information.
