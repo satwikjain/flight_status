@@ -1,9 +1,9 @@
 from dotenv import load_dotenv
+load_dotenv()
 from src.routes import getFlights, updateFlightStatus
 from src.database import check_db_connection
-from src.__init__ import app
+from src.__init__ import app, socketio
 
-load_dotenv()
 
 # Endpoint to get flight data
 @app.route('/api/flights', methods=['GET'])
@@ -17,4 +17,4 @@ def update_flight_status(flight_id):
 
 if __name__ == '__main__':
     check_db_connection()
-    app.run(debug=True)
+    socketio.run(app, debug=True)
