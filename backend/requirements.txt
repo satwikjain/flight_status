@@ -2,6 +2,6 @@ Flask
 Flask-SocketIO
 pymongo
 python-dotenv
-gevent==21.8.0
-gevent-websocket==0.10.1
-gunicorn==20.1.0
+gevent
+gevent-websocket
+gunicorn
